@@ -10,5 +10,4 @@ Once you have selected the user roles to block, simply specify the URL that you 
 
 With Block Login Pro, you can keep your site secure and protect sensitive information from unauthorized access.
 
-Live long, and prosper. 
-May the Force be with you.
+#### Live long, and prosper. May the Force be with you.
