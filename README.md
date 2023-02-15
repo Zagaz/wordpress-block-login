@@ -1,4 +1,5 @@
 # Block Login - The Ultimate User Role Restriction Plugin
+![](https://github.com/Zagaz/wordpress-block-login/?username=Zagaz)
 
 ![](https://i.ibb.co/6FfYYfS/ysnp.jpg)
 
