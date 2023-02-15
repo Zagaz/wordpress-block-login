@@ -1,4 +1,5 @@
 # Block Login - The Ultimate User Role Restriction Plugin
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FZagaz%2Fwordpress-block-login&count_bg=%230759BE&title_bg=%23555555&icon=php.svg&icon_color=%23E7E7E7&title=Visits&edge_flat=false)](https://hits.seeyoufarm.com)
 
 ![](https://i.ibb.co/6FfYYfS/ysnp.jpg)
 
