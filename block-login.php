@@ -1,16 +1,14 @@
 <?php
-
 /*
 Plugin Name: Block Login 
 Description: A plugin to restrict user roles from logging in
-Version: 1.0
+Version: 1.0.1
 Author: Zagaz
 Author URI: https://github.com/Zagaz
 plugin URI: https://github.com/Zagaz/wordpress-block-login
 License: MIT License
 Text Domain: user-role-restriction
 */
-
 
 function user_role_restriction_add_settings_page( ) {
     add_options_page( 'Block Login', 
@@ -19,7 +17,11 @@ function user_role_restriction_add_settings_page( ) {
      'user-role-restriction', 
      'user_role_restriction_settings_page' );
 }
+
 add_action( 'admin_menu', 'user_role_restriction_add_settings_page' );
+
+
+// make a page setings on the main menu with a locker as icon
 
 function user_role_restriction_register_settings() {
     register_setting( 'user-role-restriction', 
@@ -31,6 +33,14 @@ function user_role_restriction_settings_page() {
     if ( !current_user_can( 'manage_options' ) )  {
         wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
     }
+    // Create default option
+    if ( !get_option( 'user_role_restriction' ) ) {
+        $default = array(
+            'redirection_url' => '',
+        );
+        add_option( 'user_role_restriction', $default );
+    }
+
 
     $all_roles = get_editable_roles();
     $restricted_roles = get_option( 'user_role_restriction' );
@@ -77,9 +87,21 @@ function block_login_login_redirect(  ) {
 $user = wp_get_current_user();
 // get user role
 $user_role = $user->roles[0];
+if ( !get_option( 'user_role_restriction' ) ) {
+    $default = array(
+        'redirection_url' => '',
+    );
+    add_option( 'user_role_restriction', $default );
+}
 $option = get_option( 'user_role_restriction' );
 $redirectOption = $option['redirection_url'];
-$redirect = (string)$redirectOption;
+$redirect = (string) $redirectOption;
+
+// Sanitization
+$redirect = str_replace('http://', '', $redirect);
+$redirect = str_replace('https://', '', $redirect);
+$redirect = str_replace('www.', '', $redirect);
+
 
 if ($redirect == '') {
     $url = home_url();
