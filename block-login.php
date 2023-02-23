@@ -3,13 +3,18 @@
 /*
 Plugin Name: Block Login 
 Description: A plugin to restrict user roles from logging in
-Version: 1.0.1
+Version: 1.1.0
 Author: Zagaz
 Author URI: https://github.com/Zagaz
 plugin URI: https://github.com/Zagaz/wordpress-block-login
-License: MIT License
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: user-role-restriction
+Domain Path: /languages
+
 */
+
+
 
 
 function user_role_restriction_add_settings_page( ) {
@@ -108,4 +113,36 @@ if ( isset( $option[$user_role] ) ) {
 }
 
 add_action( 'admin_init', 'block_login_login_redirect', 10, 2 );
+
+
+
+function user_role_restriction_add_menu_page() {
+    add_menu_page( 'Block Login', 
+                   'Block Login',
+                   'manage_options', 
+                   'user-role-restriction', 
+                   'user_role_restriction_settings_page', 
+                   'dashicons-lock' ,
+                );
+}
+
+add_action( 'admin_menu', 'user_role_restriction_add_menu_page' );
+
+// Add settings link on plugin page
+
+function user_role_restriction_settings_link( $links ) {
+    $settings_link = '<a href="options-general.php?page=user-role-restriction">Settings</a>';
+    array_push( $links, $settings_link );
+    return $links;
+}
+
+$plugin = plugin_basename( __FILE__ );
+add_filter( "plugin_action_links_$plugin", 'user_role_restriction_settings_link' );
+
+
+
+
+
+
+
 
