@@ -41,3 +41,13 @@ function user_role_restriction_settings_page() {
     include PLUGIN_DIR . 'inc/settings/settings-form.php';
 
 }
+
+// After submit the form, place a message sucess
+
+function user_role_restriction_settings_page_message() {
+    if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] ) {
+        add_settings_error( 'user-role-restriction', 'user-role-restriction', __( 'Settings Saved', 'user-role-restriction' ), 'updated' );
+    }
+    settings_errors( 'user-role-restriction' );
+}
+add_action( 'admin_notices', 'user_role_restriction_settings_page_message' );
