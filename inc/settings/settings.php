@@ -28,15 +28,30 @@ function user_role_restriction_settings_page() {
         wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
     }
     // Create default option
+    // make an associative array of all roles where every role is set to false
+    $all_roles = get_editable_roles();
+    $default = array();
+    foreach ( $all_roles as $role_key => $role ) {
+        $default[$role_key] = false;
+    }
+    // add the redirection url to the array
+    $default['redirection_url'] = '';
+
+    // if $default item == "administrator" then delete it
+    if ( isset( $default['administrator'] ) ) {
+        unset( $default['administrator'] );
+    }
+
+
+
+    
+    
     if ( false == get_option( 'user_role_restriction' ) ) {
-        $default = array(
-            'redirection_url' => '',
-        );
+
         add_option( 'user_role_restriction', $default );
     }
 
-    $all_roles = get_editable_roles();
-    $restricted_roles = get_option( 'user_role_restriction' );
+
     // Settings form
     include PLUGIN_DIR . 'inc/settings/settings-form.php';
 

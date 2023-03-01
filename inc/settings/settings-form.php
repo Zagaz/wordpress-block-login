@@ -1,3 +1,7 @@
+<?php
+$restricted_roles = get_option( 'user_role_restriction' );
+
+?>
 <div class="wrap">
         <h1><?php _e( "Block Login" , "user-role-restriction" )  ?></h1>
         <form method="post" action="options.php">
@@ -14,6 +18,9 @@
                                 </label><br>
                             <?php endif; ?>
                         <?php endforeach; ?>
+                        <!-- Insert more info --->
+                        <small><?php _e('Select the user role(s) that you want to restrict from login.', 'user-role-restriction'); ?></small>
+
                     </td>
                 </tr>
                 <tr>
