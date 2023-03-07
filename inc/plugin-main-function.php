@@ -11,28 +11,7 @@ function block_user_role_login(  ) {
     $user = wp_get_current_user();
     // get user role
     $user_role = $user->roles[0];
-    // if get_option( 'block_user_role_login' ) not exist create it
-    if ( ! get_option( 'block_user_role_login' ) ) {
-        
-        $all_roles = get_editable_roles();
-        // for each user role set default value
-        foreach ( $all_roles as $key => $value ) {
-            $option[$key] = "0";
-        }
-        // Dele from option array if item == administrator
-        unset( $option['administrator'] );
-        
-        $option['redirection_url'] = '';
-        add_option( 'block_user_role_login' );
-        update_option( 'block_user_role_login', $option );
-
-    
-    }
-   
-   
-   $option = get_option( 'block_user_role_login' );
-
-
+    $option = get_option( 'user_role_restriction' );
     $redirectOption = $option['redirection_url'];
     $redirect = (string)$redirectOption;
 
