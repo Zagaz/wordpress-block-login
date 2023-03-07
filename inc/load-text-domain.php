@@ -5,10 +5,10 @@ if ( ! defined( 'WPINC' ) ) {
     die;
 }
 
-function user_role_restriction_load_textdomain() {
-    load_plugin_textdomain( 'user-role-restriction', false, basename( dirname( __FILE__ ) ) . '/languages' ); 
+function block_user_role_login_load_textdomain() {
+    load_plugin_textdomain( 'block-user-role-login', false, basename( dirname( __FILE__ ) ) . '/languages' ); 
 }
 
-add_action( 'plugins_loaded', 'user_role_restriction_load_textdomain' );
+add_action( 'plugins_loaded', 'block_user_role_login_load_textdomain' );
 
 // If this file is called directly, abort.
